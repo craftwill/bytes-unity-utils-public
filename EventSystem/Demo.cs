@@ -28,7 +28,7 @@ namespace Bytes
         {
             var demoData = (data as DemoData);
 
-            print("Custom data Number = " + handlerData.Number);
+            print("Custom data Number = " + demoData.Number);
         }
     }
 
