@@ -1,0 +1,16 @@
+{
+    "name": "craftwill.bytes.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:54c8134f2b30e034cbbc902fd6aa8b82"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,12 @@
+{
+    "name": "com.craftwill.bytes",
+    "version": "1.0.0",
+    "displayName": "Bytes Unity Utils Public",
+    "description": "A little in house library for making games!",
+    "unity": "2020.3.25f1",
+    "author": {
+      "name": "craftwill",
+      "email": "william-gin1@hotmail.com",
+      "url": "https://github.com/craftwill/bytes-unity-utils-public"
+    }
+  }

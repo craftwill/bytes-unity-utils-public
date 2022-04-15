@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Bytes
 {
-    public class Demo : MonoBehaviour
+    public class DemoEventManager : MonoBehaviour
     {
         private string demoEventName = "DemoEvent";
 
