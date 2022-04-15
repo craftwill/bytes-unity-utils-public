@@ -22,7 +22,6 @@ namespace Bytes
 
         public static void AddEventListener(string eventName, Action<Data> functionToCall)
         {
-            Debug.Log("init event listener: " + eventName);
             if (Instance._eventListeners.ContainsKey(eventName))
             {
                 Instance._eventListeners[eventName].Add(functionToCall);
