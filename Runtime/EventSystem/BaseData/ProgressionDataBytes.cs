@@ -1,7 +1,7 @@
 ﻿
 namespace Bytes
 {
-    public class ProgressionDataBytes : Bytes.Data
+    public class ProgressionDataBytes : BytesData
     {
         public ProgressionDataBytes(int current, int max) { Current = current; Max = max; }
         public int Current { get; private set; }

@@ -6,47 +6,70 @@ namespace Bytes
 {
     public class EventManager : MonoBehaviour
     {
+        public const string AllNamespace = "All";
         private static EventManager Instance;
 
-        private Dictionary<string, List<Action<Data>>> _eventListeners = new Dictionary<string, List<Action<Data>>>();
+        private Dictionary<string, Dictionary<string, List<Action<BytesData>>>> _eventListeners = new Dictionary<string, Dictionary<string, List<Action<BytesData>>>>();
 
         private void Awake()
         {
             Instance = this;
         }
 
-        public static void RemoveEventListener(string eventName, Action<Data> functionToCall)
+        public static void RemoveEventListener(string pEventName, Action<BytesData> pFunctionToCall)
         {
-            Instance._eventListeners[eventName].Remove(functionToCall);
+            RemoveEventListener(AllNamespace, pEventName, pFunctionToCall);
         }
 
-        public static void AddEventListener(string eventName, Action<Data> functionToCall)
+        public static void RemoveEventListener(string pEventNamespace, string pEventName, Action<BytesData> pFunctionToCall)
         {
-            if (Instance._eventListeners.ContainsKey(eventName))
+            Instance._eventListeners[pEventNamespace][pEventName].Remove(pFunctionToCall);
+        }
+
+        public static void AddEventListener(string pEventName, Action<BytesData> pFunctionToCall)
+        {
+            AddEventListener(AllNamespace, pEventName, pFunctionToCall);
+        }
+
+        public static void AddEventListener(string pEventNamespace, string pEventName, Action<BytesData> pFunctionToCall)
+        {
+            var eventListeners = Instance._eventListeners;
+
+            if (!eventListeners.ContainsKey(pEventNamespace))
             {
-                Instance._eventListeners[eventName].Add(functionToCall);
+                eventListeners[pEventNamespace] = new Dictionary<string, List<Action<BytesData>>>();
+            }
+
+            if (eventListeners[pEventNamespace].ContainsKey(pEventName))
+            {
+                eventListeners[pEventNamespace][pEventName].Add(pFunctionToCall);
                 return;
             }
-            Instance._eventListeners.Add(eventName, new List<Action<Data>>() { functionToCall });
+            eventListeners[pEventNamespace].Add(pEventName, new List<Action<BytesData>>() { pFunctionToCall });
         }
 
-        public static void Dispatch(string eventName, Data data)
+        public static void Dispatch(string pEventName, BytesData pBytesData = null)
         {
-            if (!Instance._eventListeners.ContainsKey(eventName))
+            Dispatch(AllNamespace, pEventName, pBytesData);
+        }
+
+        public static void Dispatch(string pEventNamespace, string pEventName, BytesData pBytesData = null)
+        {
+            if (!Instance._eventListeners[pEventNamespace].ContainsKey(pEventName))
             {
                 return;
             }
-            Instance.CleanEventsFromNull(eventName);
-            List<Action<Data>> functions = new List<Action<Data>>(Instance._eventListeners[eventName]);
-            foreach (Action<Data> functionToCall in functions)
+            Instance.CleanEventsFromNull(pEventNamespace, pEventName);
+            List<Action<BytesData>> functions = new List<Action<BytesData>>(Instance._eventListeners[pEventNamespace][pEventName]);
+            foreach (Action<BytesData> functionToCall in functions)
             {
-                functionToCall(data);
+                functionToCall(pBytesData);
             }
         }
 
-        private void CleanEventsFromNull(string eventName)
+        private void CleanEventsFromNull(string pEventNamespace, string pEventName)
         {
-            Instance._eventListeners[eventName].RemoveAll(item => item == null);
+            Instance._eventListeners[pEventNamespace][pEventName].RemoveAll(item => item == null);
         }
     }
 }

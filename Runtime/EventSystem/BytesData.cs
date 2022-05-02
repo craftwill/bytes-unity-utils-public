@@ -2,7 +2,7 @@
 
 namespace Bytes
 {
-    public interface Data
+    public interface BytesData
     {
         
     }

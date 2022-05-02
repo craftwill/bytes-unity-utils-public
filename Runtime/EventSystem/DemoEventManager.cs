@@ -24,7 +24,7 @@ namespace Bytes
             }
         }
 
-        private void HandleOnPressE(Data data)
+        private void HandleOnPressE(BytesData data)
         {
             var demoData = (data as DemoData);
 
@@ -32,7 +32,7 @@ namespace Bytes
         }
     }
 
-    public class DemoData : Data
+    public class DemoData : BytesData
     {
         public DemoData(int number) { Number = number; }
         public int Number { get; private set; }
