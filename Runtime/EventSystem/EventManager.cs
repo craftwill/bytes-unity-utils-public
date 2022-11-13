@@ -33,19 +33,17 @@ namespace Bytes
 
         public static void AddEventListener(string pEventNamespace, string pEventName, Action<BytesData> pFunctionToCall)
         {
-            var eventListeners = Instance._eventListeners;
-
-            if (!eventListeners.ContainsKey(pEventNamespace))
+            if (!Instance._eventListeners.ContainsKey(pEventNamespace))
             {
-                eventListeners[pEventNamespace] = new Dictionary<string, List<Action<BytesData>>>();
+                Instance._eventListeners[pEventNamespace] = new Dictionary<string, List<Action<BytesData>>>();
             }
 
-            if (eventListeners[pEventNamespace].ContainsKey(pEventName))
+            if (Instance._eventListeners[pEventNamespace].ContainsKey(pEventName))
             {
-                eventListeners[pEventNamespace][pEventName].Add(pFunctionToCall);
+                Instance._eventListeners[pEventNamespace][pEventName].Add(pFunctionToCall);
                 return;
             }
-            eventListeners[pEventNamespace].Add(pEventName, new List<Action<BytesData>>() { pFunctionToCall });
+            Instance._eventListeners[pEventNamespace].Add(pEventName, new List<Action<BytesData>>() { pFunctionToCall });
         }
 
         public static void Dispatch(string pEventName, BytesData pBytesData = null)
