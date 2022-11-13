@@ -130,6 +130,7 @@ namespace Bytes
         #endregion
         private List<Animate> animations = new List<Animate>();
         private List<Animate> animationsToAdd = new List<Animate>();
+
         private void Update()
         {
             var AnimationsToRemove = new List<Animate>();
@@ -153,10 +154,18 @@ namespace Bytes
             // Remove unused animations
             foreach (Animate anim in AnimationsToRemove) { RemoveAnimation(anim); }
         }
+
+        public void ClearAllAnimations() 
+        {
+            animations.Clear();
+            animationsToAdd.Clear();
+        }
+
         public void AddAnimation(Animate newAnimation)
         {
             animationsToAdd.Add(newAnimation);
         }
+
         public void RemoveAnimation(Animate removedAnimation)
         {
             animations.Remove(removedAnimation);
