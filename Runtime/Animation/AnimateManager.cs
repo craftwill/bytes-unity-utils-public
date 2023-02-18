@@ -64,7 +64,7 @@ namespace Bytes
         }
         public bool GetIsTimeScaled()
         {
-            return done;
+            return timeScaled;
         }
 
         private float duration;
