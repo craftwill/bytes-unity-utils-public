@@ -17,7 +17,8 @@ namespace Bytes
 
         public static void RemoveEventListener(string eventName, Action<BytesData> functionToCall)
         {
-            Instance._eventListeners[eventName].Remove(functionToCall);
+            if (Instance._eventListeners.ContainsKey(eventName))
+                Instance._eventListeners[eventName].Remove(functionToCall);
         }
 
         public static void AddEventListener(string eventName, Action<BytesData> functionToCall)
