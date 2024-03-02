@@ -94,7 +94,7 @@ namespace Bytes
                 if (callback_?.Invoke() == true)
                 {
                     if (maxRepeat == 0) { return; } else { if (maxRepeat != -1) { maxRepeat--; } }
-                    Animate.Repeat(duration_, callback_, maxRepeat);
+                    Animate.Repeat(duration_, callback_, maxRepeat, timeScaled_);
                 }
             }, timeScaled_);
             newAnimation.Play(); AnimateManager.GetInstance().AddAnimation(newAnimation); return newAnimation;
@@ -147,7 +147,7 @@ namespace Bytes
                 if (anim.GetIsDone()) { AnimationsToRemove.Add(anim); }
                 else if (anim.GetIsPlaying())
                 {
-                    if (anim.GetIsTimeScaled()) { if(Time.timeScale != 0f) anim.TriggerStepCallback(Time.deltaTime); }
+                    if (anim.GetIsTimeScaled()) { if(Mathf.Approximately(Time.timeScale, 0f)) anim.TriggerStepCallback(Time.deltaTime); }
                     else                        { anim.TriggerStepCallback(Time.unscaledDeltaTime); }
                 }
             }
