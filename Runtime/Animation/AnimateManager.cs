@@ -147,7 +147,7 @@ namespace Bytes
                 if (anim.GetIsDone()) { AnimationsToRemove.Add(anim); }
                 else if (anim.GetIsPlaying())
                 {
-                    if (anim.GetIsTimeScaled()) { if(Mathf.Approximately(Time.timeScale, 0f)) anim.TriggerStepCallback(Time.deltaTime); }
+                    if (anim.GetIsTimeScaled()) { if(!Mathf.Approximately(Time.timeScale, 0f)) anim.TriggerStepCallback(Time.deltaTime); }
                     else                        { anim.TriggerStepCallback(Time.unscaledDeltaTime); }
                 }
             }
