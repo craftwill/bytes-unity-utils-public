@@ -1,0 +1,11 @@
+{
+    "name": "com.craftwill.eventsystem",
+    "version": "1.0.2",
+    "displayName": "Bytes Unity Utils Public, but only the event system",
+    "description": "A little in house library for making games!",
+    "author": {
+      "name": "craftwill",
+      "email": "william-gin1@hotmail.com",
+      "url": "https://github.com/craftwill/bytes-unity-utils-public"
+    }
+  }
